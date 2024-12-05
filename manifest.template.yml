@@ -1,5 +1,5 @@
 name: atlas-cli-plugin-example
-description: this is an example plugin
+description: this is an example plugin now altered for testing release actions!
 version: $VERSION
 github:
     owner: $GITHUB_REPOSITORY_OWNER
