@@ -10,6 +10,9 @@ jobs:
   copybara:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Build Copybara
         run: | 
           # Clone the Copybara repository
@@ -23,5 +26,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           WORKFLOW: docs-atlas-cli-fork
         run: |
-          cd src/github.com/cveticm/atlas-cli-plugin-test/build/ci
+          pwd
+          cd build/ci
           bash ./run-copybara.sh
