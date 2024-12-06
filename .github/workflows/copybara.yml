@@ -22,10 +22,10 @@ jobs:
           
       - name: Run Copybara
         env:
-          TAG: $(git tag --list 'v*' --sort=-taggerdate | head -1)
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           WORKFLOW: docs-atlas-cli-fork
         run: |
           pwd
+          export TAG=$(git tag --list 'v*' --sort=-taggerdate | head -1)
           cd build/ci
           bash ./run-copybara.sh
