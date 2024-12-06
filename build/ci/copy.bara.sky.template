@@ -17,15 +17,14 @@ core.workflow(
         url = destination_url,
         destination_ref = "master",
         pr_branch = "apix_bot_copybara_pull_request_"+release_tag,
-        title = "Test Copybara action for release tag: " + release_tag,
-        body = "Copies commands from the source repo to the source repo to test Copybara workflow.",
+        title = "Copies Atlas CLI commands for release tag: " + release_tag,
+        body = "Copies Atlas CLI commands from the source repo. See the attached Netlify comment for build log and staging.",
         integrates = [],
     ),
     origin_files = glob(["docs/command/**"]),
-    destination_files = glob(["source/includes/command/**"]),
+    destination_files = glob(["source/command/**"]),
     authoring = authoring.pass_thru(author),
     transformations = [
-        core.move("docs/command", "source/includes/command"),
-        core.rename(".txt", ".rst", suffix = True)
+        core.move("docs/command", "source/command"),
     ],
 )
