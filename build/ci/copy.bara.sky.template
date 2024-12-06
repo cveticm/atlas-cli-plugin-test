@@ -25,10 +25,11 @@ core.workflow(
     destination_files = glob(["source/command/**"]),
     authoring = authoring.pass_thru(author),
     transformations = [
-        core.replace(
+        core.move(
             before = "docs/command",
             after = "source/command",
-            paths = glob(["docs/command/**"])
+            paths=glob(["**"]),
+            overwrite = True
         ),
     ],
 )
