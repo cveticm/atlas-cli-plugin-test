@@ -26,10 +26,9 @@ core.workflow(
     authoring = authoring.pass_thru(author),
     transformations = [
         core.replace(
-            before = "docs/command/",
-            after = "source/command/",
-            paths = glob(["docs/command/**"]),
-            noop_behavior = "IGNORE_NOOP"
+            before = "docs/command",
+            after = "source/command",
+            paths = glob(["docs/command/**"])
         ),
     ],
 )
