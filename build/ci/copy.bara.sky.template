@@ -25,9 +25,12 @@ core.workflow(
     destination_files = glob(["source/command/**"]),
     authoring = authoring.pass_thru(author),
     transformations = [
-        core.move(
-            before = "docs/command/",
-            after = "source/command/",
+        core.transformations(
+            core.move(
+                before = "docs/command/",
+                after = "source/command/",
+            ),
+            noop_behavior = "IGNORE_NOOP"
         ),
     ],
 )
