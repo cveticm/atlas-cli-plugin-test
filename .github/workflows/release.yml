@@ -40,3 +40,26 @@ jobs:
           args: release --clean --skip=validate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Copybara
+        run: | 
+          # Clone the Copybara repository
+          git clone --depth=1 https://github.com/google/copybara ${GITHUB_WORKSPACE}/copybara
+          # Build the Docker image
+          docker build -t google/copybara ${GITHUB_WORKSPACE}/copybara
+          
+      # - name: Generate token for dummy repo
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       const token = await github.apps.createInstallationAccessToken({
+      #         installation_id: <TODO>
+      #       });
+      #       core.exportVariable('DOCS_ATLAS_CLI_TOKEN', token.token);
+
+      # - name: Run Copybara
+      #   run: |
+      #     # Set up environment variables
+      #     export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+      #     export WORKFLOW=workflow_value # Replace with actual value
+      #     ./run-copybara.sh
