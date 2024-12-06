@@ -8,7 +8,7 @@ destination_url = "https://github.com/cveticm/docs-atlas-cli-fork.git"
 author = "cveticm <melanija.cvetic@mongodb.com>"
 
 core.workflow(
-    name = "cloud-docs",
+    name = "docs-atlas-cli-fork",
     origin = git.origin(
         url = source_url,
         ref = release_tag,
