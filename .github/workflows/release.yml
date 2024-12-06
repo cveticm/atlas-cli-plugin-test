@@ -4,6 +4,17 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      version_number:
+        description: 'Version number (e.g., v1.0.0, v1.0.0-pre, v1.0.0-pre1)'
+        required: true
+      skip_tests:
+        description: 'Set value to `true` to skip tests, default is `false`'
+        default: 'false'
+      use_existing_tag:
+        description: 'Set value to `true` to use an existing tag for the release process, default is `false`'
+        default: 'false'
 
 permissions:
   contents: write
@@ -48,9 +59,15 @@ jobs:
           # Build the Docker image
           docker build -t google/copybara ${GITHUB_WORKSPACE}/copybara
           
-      # - name: Generate token for dummy repo
-      #   uses: actions/github-script@v6
-      #   with:
+      - name: Run Copybara
+        env:
+          TAG: $(git tag --list 'v*' --sort=-taggerdate | head -1)
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          WORKFLOW: docs-atlas-cli-fork
+        run: |
+          cd src/github.com/cveticm/atlas-cli-plugin-test/build/ci
+          bash ./run-copybara.sh
+
       #     script: |
       #       const token = await github.apps.createInstallationAccessToken({
       #         installation_id: <TODO>

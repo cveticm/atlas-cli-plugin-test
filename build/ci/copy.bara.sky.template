@@ -1,0 +1,31 @@
+"""
+Copy definitions
+"""
+
+release_tag = "${TAG}"
+source_url = "https://github.com/cveticm/atlas-cli-plugin-test.git"
+destination_url = "https://github.com/cveticm/docs-atlas-cli-fork.git"
+author = "cveticm <melanija.cvetic@mongodb.com>"
+
+core.workflow(
+    name = "cloud-docs",
+    origin = git.origin(
+        url = source_url,
+        ref = release_tag,
+    ),
+    destination = git.github_pr_destination(
+        url = destination_url,
+        destination_ref = "master",
+        pr_branch = "apix_bot_copybara_pull_request_"+release_tag,
+        title = "Test Copybara action for release tag: " + release_tag,
+        body = "Copies commands from the source repo to the source repo to test Copybara workflow.",
+        integrates = [],
+    ),
+    origin_files = glob(["docs/command/**"]),
+    destination_files = glob(["source/includes/command/**"]),
+    authoring = authoring.pass_thru(author),
+    transformations = [
+        core.move("docs/command", "source/includes/command"),
+        core.rename(".txt", ".rst", suffix = True)
+    ],
+)
