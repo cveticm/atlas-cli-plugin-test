@@ -21,14 +21,10 @@ core.workflow(
         body = "Copies Atlas CLI commands from the source repo. See the attached Netlify comment for build log and staging.",
         integrates = [],
     ),
-    origin_files = glob(["docs/command/**"]),
-    destination_files = glob(["source/command/**"]),
+    origin_files = glob(["docs/command/atlas-kubernetes**"]),
+    destination_files = glob(["source/command/atlas-kubernetes**"]),
     authoring = authoring.pass_thru(author),
     transformations = [
-        core.replace(
-            before = "",
-            after = "",
-            paths=glob(["**"])
-        ),
+        core.move("docs/command", "source/command"),
     ],
 )
