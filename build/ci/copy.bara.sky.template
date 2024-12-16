@@ -25,6 +25,6 @@ core.workflow(
     destination_files = glob(["source/command/**"]),
     authoring = authoring.pass_thru(author),
     transformations = [
-        core.move("docs/command/${x}", "source/command/${x}", regex_groups = {'x': '^.*atlas-liveMigrations-create.*.txt$'}),
+        core.move('docs/command/${x}', 'source/command/${x}', regex_groups = {'x': '^.*atlas-liveMigrations-create.*.txt$'}),
     ],
 )
