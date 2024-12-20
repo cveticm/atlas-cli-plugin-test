@@ -1,10 +1,10 @@
-name: atlas-cli-plugin-example
-description: this is an example plugin now altered for testing release actions!
+name: atlas-cli-plugin-test
+description: this is a PoC for k8s commands!
 version: $VERSION
 github:
     owner: $GITHUB_REPOSITORY_OWNER
     name: $GITHUB_REPOSITORY_NAME
 binary: binary
 commands: 
-    example: 
-        description: Root command of the atlas cli plugin example
+    kubernetes: 
+        description: Root command of the atlas cli plugin test
