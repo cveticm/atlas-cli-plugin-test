@@ -15,6 +15,7 @@
 package config
 
 import (
+	"github.com/mongodb/atlas-cli-core/config"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,9 @@ func Builder() *cobra.Command {
 		Use:   use,
 		Short: "Manage Kubernetes configuration resources.",
 		Long:  `This command provides your Kubernetes configuration access to Atlas.`,
+		PersistentPreRun: func(_ *cobra.Command, _ []string) {
+			config.LoadAtlasCLIConfig()
+		},
 	}
 
 	cmd.AddCommand(GenerateBuilder())

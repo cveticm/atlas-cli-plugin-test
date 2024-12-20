@@ -25,6 +25,7 @@ import (
 	"atlas-cli-plugin-test/internal/kubernetes/operator/resources"
 	"atlas-cli-plugin-test/internal/kubernetes/operator/version"
 
+	"github.com/mongodb/atlas-cli-core/config"
 	"gopkg.in/yaml.v3"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -56,7 +57,7 @@ type InstallConfig struct {
 type Installer interface {
 	InstallCRDs(ctx context.Context, v string, namespaced bool) error
 	InstallConfiguration(ctx context.Context, installConfig *InstallConfig) error
-	InstallCredentials(ctx context.Context, namespace, orgID, publicKey, privateKey string, projectName string) error
+	InstallCredentials(ctx context.Context, namespace string, projectName string) error
 }
 
 type InstallResources struct {
@@ -149,7 +150,7 @@ func (ir *InstallResources) handleKind(ctx context.Context, installConfig *Insta
 	return nil
 }
 
-func (ir *InstallResources) InstallCredentials(ctx context.Context, namespace, orgID, publicKey, privateKey string, projectName string) error {
+func (ir *InstallResources) InstallCredentials(ctx context.Context, namespace string, projectName string) error {
 	name := credentialsGlobalName
 
 	if projectName != "" {
@@ -165,9 +166,9 @@ func (ir *InstallResources) InstallCredentials(ctx context.Context, namespace, o
 			},
 		},
 		StringData: map[string]string{
-			"orgId":         orgID,
-			"publicApiKey":  publicKey,
-			"privateApiKey": privateKey,
+			"orgId":         config.OrgID(),
+			"publicApiKey":  config.PublicAPIKey(),
+			"privateApiKey": config.PrivateAPIKey(),
 		},
 	}
 

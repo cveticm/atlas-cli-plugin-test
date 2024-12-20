@@ -97,16 +97,11 @@ func (i *Install) WithAtlasGov(flag bool) *Install {
 }
 
 func (i *Install) Run(ctx context.Context, orgID string) error {
-	keys, err := i.generateKeys(orgID)
-	if err != nil {
+	if err := i.installResources.InstallCRDs(ctx, i.version, len(i.watch) > 0); err != nil {
 		return err
 	}
 
-	if err = i.installResources.InstallCRDs(ctx, i.version, len(i.watch) > 0); err != nil {
-		return err
-	}
-
-	if err = i.installResources.InstallConfiguration(ctx, &InstallConfig{
+	if err := i.installResources.InstallConfiguration(ctx, &InstallConfig{
 		Version:                              i.version,
 		Namespace:                            i.namespace,
 		Watch:                                i.watch,
@@ -117,25 +112,22 @@ func (i *Install) Run(ctx context.Context, orgID string) error {
 		return err
 	}
 
-	if err = i.installResources.InstallCredentials(
+	if err := i.installResources.InstallCredentials(
 		ctx,
 		i.namespace,
-		orgID,
-		keys.GetPublicKey(),
-		keys.GetPrivateKey(),
 		i.projectName); err != nil {
 		return err
 	}
 
-	if i.importResources {
-		if err = i.importAtlasResources(orgID, keys.GetId()); err != nil {
-			return err
-		}
+	// if i.importResources {
+	// 	if err := i.importAtlasResources(config.OrgID(), keys.id); err != nil {
+	// 		return err
+	// 	}
 
-		if err = i.ensureCredentialsAssignment(ctx); err != nil {
-			return err
-		}
-	}
+	// 	if err := i.ensureCredentialsAssignment(ctx); err != nil {
+	// 		return err
+	// 	}
+	// }
 
 	return nil
 }

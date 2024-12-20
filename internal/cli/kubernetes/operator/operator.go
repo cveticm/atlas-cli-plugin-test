@@ -14,7 +14,10 @@
 
 package operator
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/mongodb/atlas-cli-core/config"
+	"github.com/spf13/cobra"
+)
 
 func Builder() *cobra.Command {
 	const use = "operator"
@@ -22,6 +25,9 @@ func Builder() *cobra.Command {
 		Use:   use,
 		Short: "Manage Atlas Kubernetes Operator.",
 		Long:  `This command manages the Atlas Kubernetes Operator.`,
+		PersistentPreRun: func(_ *cobra.Command, _ []string) {
+			config.LoadAtlasCLIConfig()
+		},
 	}
 
 	cmd.AddCommand(InstallBuilder())
