@@ -11,11 +11,18 @@ permissions:
   pull-requests: write  # For PR-specific operations
   issues: write        # For commenting functionality
 jobs:
+  github-actions-environment-variables-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List of the GitHub Actions environment variables on Windows
+        run: env
   golangci:
     name: lint
     runs-on: ubuntu-latest
     steps:
       - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+        with:
+          config: ${{ vars.PERMISSIONS_CONFIG }}
       - uses: actions/checkout@v4
       - name: Install Go
         uses: actions/setup-go@v5
@@ -40,6 +47,8 @@ jobs:
     steps:
       - uses: GitHubSecurityLab/actions-permissions/monitor@v1
         if: ${{ matrix.os=='ubuntu-latest' }}
+        with:
+          config: ${{ vars.PERMISSIONS_CONFIG }}
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
