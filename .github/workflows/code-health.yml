@@ -11,11 +11,12 @@ permissions:
   pull-requests: write  # For PR-specific operations
   issues: write        # For commenting functionality
 jobs:
-  github-actions-environment-variables-ubuntu:
+  github-actions-environment-variable-permissions-config:
     runs-on: ubuntu-latest
     steps:
-      - name: List of the GitHub Actions environment variables on Windows
-        run: env
+      - name: Debug PERMISSIONS_CONFIG
+        run: |
+          echo "Permissions Config: ${{ vars.PERMISSIONS_CONFIG }}"
   golangci:
     name: lint
     runs-on: ubuntu-latest
