@@ -22,6 +22,9 @@ fuzz-normalizer-test: ## Run fuzz test
 	@echo "==> Running fuzz test..."
 	$(TEST_CMD) -fuzz=Fuzz -fuzztime 50s --tags="$(UNIT_TAGS)" -race ./internal/kubernetes/operator/resources
 
+.PHONY: lint
+lint: ## Run linter
+	golangci-lint run
 
 .PHONY: help
 .DEFAULT_GOAL := help
