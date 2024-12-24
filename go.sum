@@ -106,6 +106,8 @@ github.com/modern-go/reflect2 v1.0.2 h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9G
 github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
 github.com/mongodb-forks/digest v1.1.0 h1:7eUdsR1BtqLv0mdNm4OXs6ddWvR4X2/OsLwdKksrOoc=
 github.com/mongodb-forks/digest v1.1.0/go.mod h1:rb+EX8zotClD5Dj4NdgxnJXG9nwrlx3NWKJ8xttz1Dg=
+github.com/mongodb/atlas-cli-core v0.0.0-20240904154034-c2296b7ce2bf h1:GIuU2Z8MzAOhZrKE5aRWazkxiYC+QOa7j+btOs55JxM=
+github.com/mongodb/atlas-cli-core v0.0.0-20240904154034-c2296b7ce2bf/go.mod h1:zeBvF+hvzhmHwvjT9QuLeGrKQlsY1YlQo8v25wWzQug=
 github.com/mongodb/mongodb-atlas-kubernetes/v2 v2.5.0 h1:2SzjXb9B3mVkYJfkCQXMMVjLULTNU7CXvLVKBpUe3MY=
 github.com/mongodb/mongodb-atlas-kubernetes/v2 v2.5.0/go.mod h1:n4Ii1oia76D+x6Bn14KyfNxysMf6XAR6z8LfE93KHh0=
 github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 h1:C3w9PqII01/Oq1c1nUAm88MOHcQC9l5mIlSMApZMrHA=

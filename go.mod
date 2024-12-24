@@ -10,6 +10,7 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/google/go-github/v61 v61.0.0
 	github.com/google/uuid v1.6.0
+	github.com/mongodb/atlas-cli-core v0.0.0-20240904154034-c2296b7ce2bf
 	github.com/mongodb/mongodb-atlas-kubernetes/v2 v2.5.0
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.8.1
